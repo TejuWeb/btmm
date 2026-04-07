@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bauddha Tarun Mitra Mandal</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#1565C0;--lb:#1E88E5;--orange:#FF6F00;--lo:#FFB300;--teal:#00695C;--bg:#f0f4ff;--white:#fff;--text:#1a1a2e;--muted:#546e7a}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+nav{background:linear-gradient(135deg,#0a2d6e,#1565C0,#1976D2);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(10,45,110,0.5)}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo{width:40px;height:40px;background:linear-gradient(135deg,#FF6F00,#FFB300);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:white;font-weight:700;font-family:'Rajdhani',sans-serif;flex-shrink:0}
+.nav-title{color:white;font-size:13px;font-weight:600;line-height:1.3}
+.nav-title span{display:block;font-size:10px;font-weight:400;opacity:0.7}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:12px;padding:6px 9px;border-radius:6px;transition:all 0.2s;font-weight:500;cursor:pointer;white-space:nowrap}
+.nav-links a:hover{background:rgba(255,255,255,0.15);color:white}
+.btn-admin{background:linear-gradient(135deg,#FF6F00,#FF8F00);color:white;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:none;box-shadow:0 2px 8px rgba(255,111,0,0.4);white-space:nowrap;font-family:'Poppins',sans-serif}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:white;border-radius:2px;transition:all 0.3s}
+.mobile-menu{display:none;position:absolute;top:60px;left:0;right:0;background:#0d3a7a;z-index:99;padding:1rem;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,0.9);text-decoration:none;font-size:14px;padding:10px 14px;border-radius:8px;font-weight:500;cursor:pointer}
+.mobile-menu a:hover{background:rgba(255,255,255,0.12)}
+.mobile-menu .btn-admin-m{background:linear-gradient(135deg,#FF6F00,#FF8F00);color:white;border:none;padding:10px 14px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;text-align:left;font-family:'Poppins',sans-serif;margin-top:4px}
+
+/* HERO */
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#0a1628 0%,#0d2d6e 40%,#1565C0 80%,#0288D1 100%);position:relative;overflow:hidden;padding:3rem 1.5rem 6rem}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(255,179,0,0.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(100,180,255,0.1) 0%,transparent 50%)}
+.hero-pattern{position:absolute;inset:0;opacity:0.04;background-image:repeating-linear-gradient(45deg,#FFB300 0,#FFB300 1px,transparent 0,transparent 50%);background-size:18px 18px}
+.chakra{position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:420px;height:420px;border-radius:50%;border:60px solid rgba(255,179,0,0.06);display:flex;align-items:center;justify-content:center}
+.chakra::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;border:40px solid rgba(255,179,0,0.04)}
+.chakra::after{content:'☸';font-size:180px;color:rgba(255,179,0,0.08);line-height:1}
+.hero-content{position:relative;z-index:1;max-width:560px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,179,0,0.15);border:1px solid rgba(255,179,0,0.4);color:#FFD54F;padding:6px 16px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:1.5rem;letter-spacing:1px}
+.hero h1{font-size:clamp(30px,6vw,54px);font-weight:700;color:white;line-height:1.15;margin-bottom:1rem;font-family:'Rajdhani',sans-serif}
+.hero h1 .accent{color:#FFB300}
+.hero p{color:rgba(255,255,255,0.75);font-size:14px;line-height:1.8;margin-bottom:2rem;max-width:440px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,#FF6F00,#FFB300);color:white;border:none;padding:13px 28px;border-radius:30px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 16px rgba(255,111,0,0.4);font-family:'Poppins',sans-serif;transition:transform 0.2s}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-outline{background:transparent;color:white;border:2px solid rgba(255,255,255,0.45);padding:13px 28px;border-radius:30px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:all 0.2s}
+.btn-outline:hover{border-color:white;background:rgba(255,255,255,0.08)}
+.hero-stats{position:absolute;bottom:0;left:0;right:0;display:flex;background:rgba(10,22,40,0.8);border-top:1px solid rgba(255,255,255,0.08)}
+.hs{flex:1;text-align:center;padding:1rem 0.5rem;border-right:1px solid rgba(255,255,255,0.07)}
+.hs:last-child{border:none}
+.hs-num{font-size:24px;font-weight:700;color:#FFD54F;font-family:'Rajdhani',sans-serif}
+.hs-lbl{font-size:10px;color:rgba(255,255,255,0.6);margin-top:2px}
+
+/* SECTIONS */
+.section{padding:3.5rem 1.5rem;max-width:1100px;margin:0 auto}
+.sh{text-align:center;margin-bottom:2.5rem}
+.stag{display:inline-block;background:#E3F2FD;color:#1565C0;padding:4px 16px;border-radius:20px;font-size:10px;font-weight:700;margin-bottom:0.75rem;letter-spacing:1.2px;text-transform:uppercase}
+.sh h2{font-size:clamp(22px,4vw,36px);font-weight:700;color:#0a2d6e;font-family:'Rajdhani',sans-serif;margin-bottom:0.5rem}
+.sh p{color:var(--muted);font-size:13px;max-width:460px;margin:0 auto}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.about-text h3{font-size:24px;font-weight:700;color:var(--text);font-family:'Rajdhani',sans-serif;margin-bottom:1rem}
+.about-text p{color:var(--muted);line-height:1.8;font-size:13.5px;margin-bottom:1rem}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.pillar{background:white;border-radius:14px;padding:1.25rem;box-shadow:0 4px 16px rgba(21,101,192,0.1);border-left:3px solid var(--blue)}
+.pillar .pi{font-size:22px;margin-bottom:8px}
+.pillar h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.pillar p{font-size:12px;color:var(--muted)}
+
+/* EVENTS */
+.stripe{background:linear-gradient(180deg,#f0f4ff,#e8efff);padding:1px 0}
+.events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.ec{background:white;border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(21,101,192,0.1);transition:transform 0.25s}
+.ec:hover{transform:translateY(-5px)}
+.eb{height:100px;display:flex;align-items:center;justify-content:center;font-size:46px}
+.ebody{padding:1.25rem}
+.edate{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px}
+.etitle{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;font-family:'Rajdhani',sans-serif}
+.edesc{font-size:13px;color:var(--muted);line-height:1.6}
+.badge{display:inline-block;padding:3px 12px;border-radius:12px;font-size:11px;font-weight:700;margin-top:12px}
+.bc{background:#E3F2FD;color:#1565C0}
+.bd{background:#F3E5F5;color:#7B1FA2}
+
+/* MEMBERS */
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.25rem}
+.mc{background:white;border-radius:18px;padding:1.5rem 1rem;text-align:center;box-shadow:0 4px 16px rgba(21,101,192,0.08);transition:transform 0.2s}
+.mc:hover{transform:translateY(-4px)}
+.mav{width:60px;height:60px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:white;font-family:'Rajdhani',sans-serif}
+.mn{font-size:14px;font-weight:700;color:var(--text);font-family:'Rajdhani',sans-serif}
+.mr{font-size:11px;color:var(--muted);margin-top:2px}
+.ms{display:inline-block;font-size:10px;padding:2px 10px;border-radius:10px;margin-top:8px;font-weight:700}
+.se{background:#E3F2FD;color:#1565C0}
+.sa{background:#E8F5E9;color:#2E7D32}
+
+/* GALLERY */
+.gg{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.gi{aspect-ratio:1;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:40px;cursor:pointer;transition:transform 0.2s;position:relative;overflow:hidden}
+.gi:hover{transform:scale(1.05)}
+.gov{position:absolute;inset:0;background:rgba(10,22,40,0.5);opacity:0;transition:opacity 0.2s;display:flex;align-items:flex-end;padding:10px}
+.gi:hover .gov{opacity:1}
+.gov span{color:white;font-size:11px;font-weight:600}
+
+/* CONTACT */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.ci h3{font-size:22px;font-weight:700;color:var(--text);margin-bottom:1.25rem;font-family:'Rajdhani',sans-serif}
+.cd{display:flex;align-items:center;gap:12px;margin-bottom:1rem;font-size:13px;color:var(--muted)}
+.cd .ico{width:36px;height:36px;border-radius:9px;background:#E3F2FD;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.cf{background:white;border-radius:20px;padding:1.75rem;box-shadow:0 4px 20px rgba(21,101,192,0.1)}
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px}
+.fg input,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid #E0E0E0;border-radius:10px;font-size:13px;font-family:'Poppins',sans-serif;outline:none;transition:border 0.2s;color:var(--text);background:white}
+.fg input:focus,.fg textarea:focus{border-color:var(--blue)}
+.fg textarea{height:95px;resize:vertical}
+
+footer{background:linear-gradient(135deg,#0a2d6e,#1565C0);color:rgba(255,255,255,0.8);text-align:center;padding:2rem 1rem;font-size:13px}
+footer strong{color:#FFD54F}
+
+/* ADMIN */
+.admin-wrap{display:none;min-height:100vh;background:#f0f4ff}
+.admin-wrap.show{display:block}
+.an{background:white;border-bottom:2px solid #E3F2FD;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.ab{font-size:15px;font-weight:700;color:#0a2d6e;font-family:'Rajdhani',sans-serif}
+.ab span{font-size:11px;font-weight:400;color:var(--muted);display:block}
+.al{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 58px)}
+.sidebar{background:white;border-right:1px solid #E8EDF5;padding:1rem 0;overflow-y:auto}
+.sl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;padding:0 1.25rem;margin-top:1rem;margin-bottom:4px}
+.slink{display:flex;align-items:center;gap:8px;padding:9px 1.25rem;font-size:13px;color:var(--muted);cursor:pointer;transition:all 0.2s;font-weight:500;border-left:3px solid transparent}
+.slink:hover{background:#F0F4FF;color:#1565C0}
+.slink.act{background:#EBF2FF;color:#1565C0;border-left-color:#1565C0}
+.slink .dot{width:7px;height:7px;border-radius:50%;background:#E0E0E0;flex-shrink:0}
+.slink.act .dot{background:#1565C0}
+.am{padding:1.5rem;overflow-y:auto}
+.ah{margin-bottom:1.5rem}
+.ah h2{font-size:24px;font-weight:700;color:var(--text);font-family:'Rajdhani',sans-serif}
+.ah p{font-size:13px;color:var(--muted);margin-top:2px}
+.sr{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+.sb{background:white;border-radius:14px;padding:1.1rem;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.sb .lb{font-size:12px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.sb .sn{font-size:28px;font-weight:700;font-family:'Rajdhani',sans-serif}
+.sb .ch{font-size:11px;margin-top:3px;font-weight:600}
+.up{color:#2E7D32}.dn{color:#C62828}
+.bn{color:#1565C0}.on{color:#FF6F00}.tn{color:#00695C}.pn{color:#AD1457}
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.panel{background:white;border-radius:14px;padding:1.25rem;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.pt{font-size:14px;font-weight:600;color:var(--text);margin-bottom:1rem;font-family:'Rajdhani',sans-serif;display:flex;align-items:center;justify-content:space-between}
+.va{font-size:12px;color:#1565C0;font-weight:500;cursor:pointer;font-family:'Poppins',sans-serif}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:10px;color:var(--muted);font-weight:700;text-align:left;padding:5px 7px;border-bottom:1px solid #F0F4FF;text-transform:uppercase;letter-spacing:0.5px}
+.tbl td{font-size:12px;padding:9px 7px;border-bottom:1px solid #F9FAFF;color:var(--text)}
+.bx{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+.bg{background:#E8F5E9;color:#2E7D32}.bb{background:#E3F2FD;color:#1565C0}.bo{background:#FFF3E0;color:#E65100}.br{background:#FFEBEE;color:#C62828}
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:0.75rem}
+.qb{background:#F0F4FF;border:none;border-radius:10px;padding:11px;font-size:12px;font-weight:600;color:#1565C0;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all 0.2s;font-family:'Poppins',sans-serif}
+.qb:hover{background:#E3F2FD;transform:translateY(-1px)}
+.qb .qi{font-size:16px}
+
+/* LOGIN */
+.login-wrap{position:fixed;inset:0;background:linear-gradient(135deg,#0a1628,#0a2d6e,#1565C0);display:none;align-items:center;justify-content:center;z-index:200;padding:1rem}
+.login-wrap.show{display:flex}
+.lbox{background:white;border-radius:22px;padding:2.25rem;width:100%;max-width:350px;box-shadow:0 24px 64px rgba(0,0,0,0.4)}
+.lbox h2{font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;font-family:'Rajdhani',sans-serif}
+.lbox p{font-size:13px;color:var(--muted);margin-bottom:1.25rem}
+.lbox .lbl{display:block;font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px;margin-top:1rem}
+.lbox input{width:100%;padding:11px 13px;border:1.5px solid #E0E0E0;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border 0.2s;color:var(--text)}
+.lbox input:focus{border-color:var(--blue)}
+.btn-login{width:100%;background:linear-gradient(135deg,#0a2d6e,#1565C0);color:white;border:none;padding:13px;border-radius:11px;font-size:15px;font-weight:600;cursor:pointer;margin-top:1.25rem;font-family:'Poppins',sans-serif;transition:opacity 0.2s}
+.btn-login:hover{opacity:0.9}
+.bbk{background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;display:flex;align-items:center;gap:4px;margin-bottom:1rem;font-family:'Poppins',sans-serif}
+.bbk:hover{color:var(--text)}
+.hint{font-size:11px;color:var(--muted);text-align:center;margin-top:0.75rem}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .about-grid,.cg{grid-template-columns:1fr}
+  .sr{grid-template-columns:1fr 1fr}
+  .panels{grid-template-columns:1fr}
+  .al{grid-template-columns:1fr}
+  .sidebar{display:none}
+}
+@media(max-width:600px){
+  .hero{padding:2rem 1rem 5.5rem}
+  .hero-btns{flex-direction:column;gap:10px}
+  .btn-primary,.btn-outline{width:100%;text-align:center}
+  .hs-num{font-size:20px}
+  .hs-lbl{font-size:9px}
+  .sr{grid-template-columns:1fr 1fr}
+  .section{padding:2.5rem 1rem}
+  .pillars{grid-template-columns:1fr 1fr}
+  .mg{grid-template-columns:1fr 1fr}
+  .gg{grid-template-columns:1fr 1fr}
+  .qa{grid-template-columns:1fr}
+  .chakra{display:none}
+}
+@media(max-width:380px){
+  .nav-logo{width:34px;height:34px;font-size:15px}
+  .nav-title{font-size:11px}
+  .hero h1{font-size:26px}
+  .sr{grid-template-columns:1fr}
+}
+.page{display:none}
+.page.show{display:block}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">ब</div>
+    <div class="nav-title">बौद्ध तरुण मित्र मंडळ <span>Bauddha Tarun Mitra Mandal</span></div>
+  </div>
+  <div class="nav-links">
+    <a onclick="goPage('home')">मुख्यपृष्ठ</a>
+    <a onclick="goPage('about')">आमच्याबद्दल</a>
+    <a onclick="goPage('events')">कार्यक्रम</a>
+    <a onclick="goPage('members')">सदस्य</a>
+    <a onclick="goPage('gallery')">गॅलरी</a>
+    <a onclick="goPage('contact')">संपर्क</a>
+    <button class="btn-admin" onclick="showLogin()">🔐 Admin</button>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()" id="ham">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mob-menu">
+  <a onclick="goPage('home');closeMenu()">मुख्यपृष्ठ</a>
+  <a onclick="goPage('about');closeMenu()">आमच्याबद्दल</a>
+  <a onclick="goPage('events');closeMenu()">कार्यक्रम</a>
+  <a onclick="goPage('members');closeMenu()">सदस्य</a>
+  <a onclick="goPage('gallery');closeMenu()">गॅलरी</a>
+  <a onclick="goPage('contact');closeMenu()">संपर्क</a>
+  <button class="btn-admin-m" onclick="showLogin();closeMenu()">🔐 Admin Login</button>
+</div>
+
+<div id="public-site">
+
+<div id="page-home" class="page show">
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <div class="chakra"></div>
+  <div class="hero-content">
+    <div class="hero-badge">☸ समाज • सेवा • संघर्ष</div>
+    <h1>बौद्ध तरुण<br><span class="accent">मित्र मंडळ</span></h1>
+    <p>डॉ. बाबासाहेब आंबेडकर आणि तथागत गौतम बुद्ध यांच्या विचारांनी प्रेरित होऊन गावाच्या सर्वांगीण विकासासाठी अथकपणे कार्यरत संघटन.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="goPage('events')">कार्यक्रम पहा →</button>
+      <button class="btn-outline" onclick="goPage('about')">आमच्याबद्दल जाणून घ्या</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-num">150+</div><div class="hs-lbl">सक्रिय सदस्य</div></div>
+    <div class="hs"><div class="hs-num">12</div><div class="hs-lbl">वार्षिक कार्यक्रम</div></div>
+    <div class="hs"><div class="hs-num">8</div><div class="hs-lbl">वर्षांचा अनुभव</div></div>
+    <div class="hs"><div class="hs-num">500+</div><div class="hs-lbl">कुटुंबे जोडलेली</div></div>
+  </div>
+</div>
+</div>
+
+<div id="page-about" class="page">
+<div class="section">
+  <div class="sh"><div class="stag">आमच्याबद्दल</div><h2>आमची ओळख</h2><p>गावाच्या सर्वांगीण विकासासाठी समर्पित संघटन</p></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h3>बौद्ध तरुण मित्र मंडळाची स्थापना</h3>
+      <p>आमचे मंडळ गावातील तरुणांनी एकत्र येऊन स्थापन केले. डॉ. बाबासाहेब आंबेडकर यांच्या विचारांनी प्रेरित होऊन आम्ही समाजसेवा, शिक्षण आणि सांस्कृतिक उपक्रमांमध्ये सक्रिय आहोत.</p>
+      <p>दरवर्षी आम्ही धम्म कार्यक्रम, रक्तदान शिबिर, शैक्षणिक मेळावे आणि सामाजिक उपक्रम राबवतो.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><div class="pi">📚</div><h4>शिक्षण</h4><p>शिष्यवृत्ती व मार्गदर्शन</p></div>
+      <div class="pillar"><div class="pi">🩸</div><h4>रक्तदान</h4><p>वार्षिक शिबिर</p></div>
+      <div class="pillar"><div class="pi">☸️</div><h4>धम्म</h4><p>बौद्ध कार्यक्रम</p></div>
+      <div class="pillar"><div class="pi">🤝</div><h4>एकता</h4><p>समाज बांधणी</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="page-events" class="page">
+<div class="stripe"><div class="section">
+  <div class="sh"><div class="stag">कार्यक्रम</div><h2>आगामी व मागील कार्यक्रम</h2><p>मंडळाचे विविध उपक्रम</p></div>
+  <div class="events-grid">
+    <div class="ec"><div class="eb" style="background:linear-gradient(135deg,#1565C0,#1E88E5)">☸️</div><div class="ebody"><div class="edate">14 एप्रिल 2025</div><div class="etitle">डॉ. आंबेडकर जयंती महोत्सव</div><div class="edesc">भव्य मिरवणूक, सांस्कृतिक कार्यक्रम आणि भाषणे.</div><span class="badge bc">आगामी</span></div></div>
+    <div class="ec"><div class="eb" style="background:linear-gradient(135deg,#AD1457,#E91E63)">🩸</div><div class="ebody"><div class="edate">मार्च 2025</div><div class="etitle">रक्तदान शिबिर</div><div class="edesc">वार्षिक रक्तदान शिबिर — ५० जणांनी रक्तदान केले.</div><span class="badge bd">पूर्ण झाले</span></div></div>
+    <div class="ec"><div class="eb" style="background:linear-gradient(135deg,#00695C,#00897B)">📖</div><div class="ebody"><div class="edate">जानेवारी 2025</div><div class="etitle">शैक्षणिक मेळावा</div><div class="edesc">करिअर मार्गदर्शन व मोफत अभ्यास साहित्य वितरण.</div><span class="badge bd">पूर्ण झाले</span></div></div>
+  </div>
+</div></div>
+</div>
+
+<div id="page-members" class="page">
+<div class="section">
+  <div class="sh"><div class="stag">सदस्य</div><h2>आमची कार्यकारिणी</h2><p>मंडळाचे प्रमुख पदाधिकारी</p></div>
+  <div class="mg">
+    <div class="mc"><div class="mav" style="background:linear-gradient(135deg,#1565C0,#1E88E5)">अ</div><div class="mn">अध्यक्ष</div><div class="mr">President</div><span class="ms se">कार्यकारिणी</span></div>
+    <div class="mc"><div class="mav" style="background:linear-gradient(135deg,#FF6F00,#FFB300)">उ</div><div class="mn">उपाध्यक्ष</div><div class="mr">Vice President</div><span class="ms se">कार्यकारिणी</span></div>
+    <div class="mc"><div class="mav" style="background:linear-gradient(135deg,#00695C,#00897B)">स</div><div class="mn">सचिव</div><div class="mr">Secretary</div><span class="ms se">कार्यकारिणी</span></div>
+    <div class="mc"><div class="mav" style="background:linear-gradient(135deg,#AD1457,#E91E63)">ख</div><div class="mn">खजिनदार</div><div class="mr">Treasurer</div><span class="ms se">कार्यकारिणी</span></div>
+    <div class="mc"><div class="mav" style="background:linear-gradient(135deg,#6A1B9A,#9C27B0)">स</div><div class="mn">सदस्य</div><div class="mr">Member</div><span class="ms sa">सक्रिय</span></div>
+    <div class="mc"><div class="mav" style="background:linear-gradient(135deg,#37474F,#607D8B)">स</div><div class="mn">सदस्य</div><div class="mr">Member</div><span class="ms sa">सक्रिय</span></div>
+  </div>
+</div>
+</div>
+
+<div id="page-gallery" class="page">
+<div class="stripe"><div class="section">
+  <div class="sh"><div class="stag">गॅलरी</div><h2>फोटो गॅलरी</h2><p>आमच्या कार्यक्रमांचे सुंदर क्षण</p></div>
+  <div class="gg">
+    <div class="gi" style="background:linear-gradient(135deg,#1565C0,#42A5F5)">☸️<div class="gov"><span>आंबेडकर जयंती</span></div></div>
+    <div class="gi" style="background:linear-gradient(135deg,#AD1457,#F06292)">🩸<div class="gov"><span>रक्तदान शिबिर</span></div></div>
+    <div class="gi" style="background:linear-gradient(135deg,#00695C,#4DB6AC)">📖<div class="gov"><span>शैक्षणिक मेळावा</span></div></div>
+    <div class="gi" style="background:linear-gradient(135deg,#FF6F00,#FFCA28)">🎭<div class="gov"><span>सांस्कृतिक कार्यक्रम</span></div></div>
+    <div class="gi" style="background:linear-gradient(135deg,#6A1B9A,#CE93D8)">🌸<div class="gov"><span>धम्म कार्यक्रम</span></div></div>
+    <div class="gi" style="background:linear-gradient(135deg,#1B5E20,#81C784)">🤝<div class="gov"><span>सामाजिक उपक्रम</span></div></div>
+  </div>
+</div></div>
+</div>
+
+<div id="page-contact" class="page">
+<div class="section">
+  <div class="sh"><div class="stag">संपर्क</div><h2>आमच्याशी संपर्क साधा</h2><p>कोणतीही माहिती किंवा सहकार्यासाठी संपर्क करा</p></div>
+  <div class="cg">
+    <div class="ci">
+      <h3>संपर्क माहिती</h3>
+      <div class="cd"><div class="ico">📍</div><span>गाव, तालुका, जिल्हा, महाराष्ट्र</span></div>
+      <div class="cd"><div class="ico">📞</div><span>+91 XXXXX XXXXX</span></div>
+      <div class="cd"><div class="ico">📧</div><span>btmm@email.com</span></div>
+      <div class="cd"><div class="ico">🕐</div><span>सोमवार - शनिवार, सकाळी ९ ते संध्याकाळी ६</span></div>
+    </div>
+    <div class="cf">
+      <div class="fg"><label>तुमचे नाव</label><input type="text" placeholder="पूर्ण नाव लिहा"></div>
+      <div class="fg"><label>मोबाइल नंबर</label><input type="text" placeholder="+91 XXXXX XXXXX"></div>
+      <div class="fg"><label>संदेश</label><textarea placeholder="तुमचा संदेश इथे लिहा..."></textarea></div>
+      <button class="btn-primary" style="width:100%;border-radius:10px">संदेश पाठवा →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <p>© 2025 <strong>बौद्ध तरुण मित्र मंडळ</strong> | समाज • सेवा • संघर्ष | सर्व हक्क राखीव</p>
+  <p style="margin-top:6px;font-size:12px;opacity:0.65">जय भीम 🙏 | नमो बुद्धाय ☸️</p>
+</footer>
+</div>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="lw">
+  <div class="lbox">
+    <button class="bbk" onclick="hideLogin()">← मागे जा</button>
+    <h2>🔐 Admin Login</h2>
+    <p>BTMM व्यवस्थापन पोर्टल</p>
+    <label class="lbl">वापरकर्ता नाव</label>
+    <input type="text" id="uid" placeholder="admin">
+    <label class="lbl">पासवर्ड</label>
+    <input type="password" id="upw" placeholder="••••••••">
+    <button class="btn-login" onclick="doLogin()">लॉगिन करा →</button>
+    <p class="hint">Demo: admin / admin123</p>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="admin-wrap" id="aw">
+  <div class="an">
+    <div><div class="ab">BTMM Admin Panel <span>बौद्ध तरुण मित्र मंडळ</span></div></div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:12px;color:var(--muted)">🟢 Admin</span>
+      <button onclick="doLogout()" style="background:#FFEBEE;color:#C62828;border-radius:8px;padding:6px 12px;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif">लॉगआउट</button>
+    </div>
+  </div>
+  <div class="al">
+    <div class="sidebar">
+      <div class="sl">डॅशबोर्ड</div>
+      <div class="slink act"><div class="dot"></div>मुख्य डॅशबोर्ड</div>
+      <div class="sl">व्यवस्थापन</div>
+      <div class="slink"><div class="dot"></div>सदस्य व्यवस्थापन</div>
+      <div class="slink"><div class="dot"></div>कार्यक्रम</div>
+      <div class="slink"><div class="dot"></div>वर्गणी</div>
+      <div class="slink"><div class="dot"></div>जनगणना</div>
+      <div class="sl">हिशोब</div>
+      <div class="slink"><div class="dot"></div>जमा-खर्च</div>
+      <div class="slink"><div class="dot"></div>अहवाल</div>
+      <div class="sl">इतर</div>
+      <div class="slink"><div class="dot"></div>यादी</div>
+      <div class="slink"><div class="dot"></div>गॅलरी</div>
+      <div class="slink"><div class="dot"></div>सूचना</div>
+      <div class="slink"><div class="dot"></div>सेटिंग्ज</div>
+    </div>
+    <div class="am">
+      <div class="ah"><h2>मुख्य डॅशबोर्ड</h2><p>BTMM व्यवस्थापन — आढावा</p></div>
+      <div class="sr">
+        <div class="sb"><div class="lb">एकूण सदस्य</div><div class="sn bn">152</div><div class="ch up">↑ 8 या महिन्यात</div></div>
+        <div class="sb"><div class="lb">जमा रक्कम</div><div class="sn on">₹48,500</div><div class="ch up">↑ ₹3,200 वाढ</div></div>
+        <div class="sb"><div class="lb">आगामी कार्यक्रम</div><div class="sn tn">3</div><div class="ch" style="color:var(--muted)">पुढील 30 दिवसांत</div></div>
+        <div class="sb"><div class="lb">वर्गणी थकीत</div><div class="sn pn">18</div><div class="ch dn">↓ सूचना पाठवा</div></div>
+      </div>
+      <div class="panels">
+        <div class="panel"><div class="pt">नवीन सदस्य <span class="va">सर्व पहा →</span></div>
+          <table class="tbl"><tr><th>नाव</th><th>दिनांक</th><th>स्थिती</th></tr>
+          <tr><td>राहुल कांबळे</td><td>25 मार्च</td><td><span class="bx bg">सक्रिय</span></td></tr>
+          <tr><td>प्रिया गायकवाड</td><td>22 मार्च</td><td><span class="bx bg">सक्रिय</span></td></tr>
+          <tr><td>अमोल वाघमारे</td><td>18 मार्च</td><td><span class="bx bo">प्रलंबित</span></td></tr>
+          <tr><td>सुनीता भोसले</td><td>15 मार्च</td><td><span class="bx bg">सक्रिय</span></td></tr></table>
+        </div>
+        <div class="panel"><div class="pt">आर्थिक व्यवहार <span class="va">सर्व पहा →</span></div>
+          <table class="tbl"><tr><th>विवरण</th><th>रक्कम</th><th>प्रकार</th></tr>
+          <tr><td>वर्गणी - मार्च</td><td>₹5,000</td><td><span class="bx bg">जमा</span></td></tr>
+          <tr><td>कार्यक्रम खर्च</td><td>₹2,300</td><td><span class="bx br">खर्च</span></td></tr>
+          <tr><td>देणगी</td><td>₹10,000</td><td><span class="bx bg">जमा</span></td></tr>
+          <tr><td>साहित्य खरेदी</td><td>₹1,500</td><td><span class="bx br">खर्च</span></td></tr></table>
+        </div>
+        <div class="panel"><div class="pt">त्वरित कृती</div>
+          <div class="qa">
+            <button class="qb"><span class="qi">👤</span>नवीन सदस्य जोडा</button>
+            <button class="qb"><span class="qi">📅</span>कार्यक्रम जोडा</button>
+            <button class="qb"><span class="qi">💰</span>व्यवहार नोंदवा</button>
+            <button class="qb"><span class="qi">📢</span>सूचना पाठवा</button>
+            <button class="qb"><span class="qi">📸</span>फोटो अपलोड</button>
+            <button class="qb"><span class="qi">📊</span>अहवाल काढा</button>
+          </div>
+        </div>
+        <div class="panel"><div class="pt">आगामी कार्यक्रम <span class="va">सर्व पहा →</span></div>
+          <table class="tbl"><tr><th>कार्यक्रम</th><th>दिनांक</th><th>स्थिती</th></tr>
+          <tr><td>आंबेडकर जयंती</td><td>14 एप्रिल</td><td><span class="bx bb">तयारी सुरू</span></td></tr>
+          <tr><td>रक्तदान शिबिर</td><td>20 मे</td><td><span class="bx bo">नियोजित</span></td></tr>
+          <tr><td>धम्म कार्यक्रम</td><td>जून 2025</td><td><span class="bx bo">नियोजित</span></td></tr></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function goPage(p){
+  document.querySelectorAll('.page').forEach(e=>e.classList.remove('show'));
+  var el=document.getElementById('page-'+p);
+  if(el)el.classList.add('show');
+  window.scrollTo(0,0);
+}
+function toggleMenu(){
+  document.getElementById('mob-menu').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mob-menu').classList.remove('open');
+}
+function showLogin(){document.getElementById('lw').classList.add('show')}
+function hideLogin(){document.getElementById('lw').classList.remove('show')}
+function doLogin(){
+  var u=document.getElementById('uid').value,p=document.getElementById('upw').value;
+  if(u==='admin'&&p==='admin123'){
+    hideLogin();
+    document.getElementById('public-site').style.display='none';
+    document.getElementById('aw').classList.add('show');
+  } else alert('चुकीचे! Demo: admin / admin123');
+}
+function doLogout(){
+  document.getElementById('aw').classList.remove('show');
+  document.getElementById('public-site').style.display='block';
+}
+</script>
+</body>
+</html>
