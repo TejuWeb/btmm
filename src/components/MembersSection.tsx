@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Award } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Member {
   name: string;
@@ -144,9 +145,16 @@ export const MembersSection = () => {
             <p className="text-white/70">मंडळाचे सभासद होण्यासाठी आजच अर्ज करा.</p>
           </div>
         </div>
-        <button className="px-10 py-4 bg-white text-primary-navy font-bold rounded-2xl shadow-xl hover:bg-gold hover:text-white transition-all">
-          सभासद नोंदणी करा
-        </button>
+        <div className="flex flex-col sm:flex-row gap-4 items-center">
+          <Link href="/members-list" className="text-white/60 hover:text-white font-bold text-sm underline-offset-4 hover:underline transition-all">
+            नोंदणीकृत सभासद पहा
+          </Link>
+          <Link href="/register">
+            <button className="px-10 py-4 bg-white text-primary-navy font-bold rounded-2xl shadow-xl hover:bg-gold hover:text-white transition-all">
+              सभासद नोंदणी करा
+            </button>
+          </Link>
+        </div>
       </motion.div>
     </section>
   );

@@ -33,8 +33,67 @@ const events = [
 ];
 
 export const EventsSection = () => {
+  const [selectedEvent, setSelectedEvent] = React.useState<typeof events[0] | null>(null);
+
   return (
     <section id="events" className="section-padding bg-slate-50 dark:bg-white/[0.02]">
+      {/* Modal Backdrop */}
+      {selectedEvent && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm"
+          onClick={() => setSelectedEvent(null)}
+        >
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden max-w-2xl w-full shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={cn("h-64 flex items-center justify-center text-8xl bg-gradient-to-br relative", selectedEvent.gradient)}>
+               <span>{selectedEvent.icon}</span>
+               <button 
+                 onClick={() => setSelectedEvent(null)}
+                 className="absolute top-6 right-6 w-10 h-10 bg-black/20 hover:bg-black/40 rounded-full flex items-center justify-center text-white transition-colors"
+               >
+                 ✕
+               </button>
+            </div>
+            <div className="p-8 md:p-12">
+               <span className="inline-block px-3 py-1 rounded-full bg-accent-blue/10 text-accent-blue text-[10px] font-bold uppercase tracking-widest mb-4">
+                 कार्यक्रम पत्रिका
+               </span>
+               <h3 className="text-3xl font-extrabold text-primary-navy dark:text-white mb-6">
+                 {selectedEvent.title}
+               </h3>
+               <div className="grid grid-cols-2 gap-8 mb-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 text-foreground/60">
+                      <Calendar size={20} className="text-accent-blue" />
+                      <span className="font-bold">{selectedEvent.date}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-foreground/60">
+                      <MapPin size={20} className="text-accent-blue" />
+                      <span className="font-bold">{selectedEvent.location}</span>
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border-2 border-dashed border-slate-200 dark:border-white/10 flex items-center justify-center p-4 text-center">
+                     <p className="text-xs text-foreground/40 font-bold uppercase">येथे कार्यक्रमाचा फोटो असेल</p>
+                  </div>
+               </div>
+               <p className="text-foreground/60 leading-relaxed mb-8">
+                 आमच्या या कार्यक्रमात सहभागी होऊन सहकार्य करावे ही नम्र विनंती. कार्यक्रमाची सविस्तर रूपरेषा लवकरच जाहीर केली जाईल.
+               </p>
+               <button 
+                 onClick={() => setSelectedEvent(null)}
+                 className="w-full py-4 rounded-2xl bg-primary-navy text-white font-bold"
+               >
+                 बंद करा
+               </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
       <div className="text-center mb-16">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
@@ -105,7 +164,10 @@ export const EventsSection = () => {
                 </div>
               </div>
 
-              <button className="w-full py-4 rounded-2xl bg-slate-50 dark:bg-white/5 hover:bg-accent-blue hover:text-white transition-all font-bold text-sm flex items-center justify-center gap-2 group/btn">
+              <button 
+                onClick={() => setSelectedEvent(event)}
+                className="w-full py-4 rounded-2xl bg-slate-50 dark:bg-white/5 hover:bg-accent-blue hover:text-white transition-all font-bold text-sm flex items-center justify-center gap-2 group/btn"
+              >
                 तपशील पहा
                 <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
               </button>

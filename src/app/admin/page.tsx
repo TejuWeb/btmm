@@ -20,6 +20,38 @@ import {
 } from "lucide-react";
 
 export default function AdminDashboard() {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div className="min-h-screen bg-[#f8faff] dark:bg-[#0a0e1a] flex items-center justify-center p-6 text-center">
+        <div className="bg-white dark:bg-white/5 p-10 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-white/10 max-w-sm">
+          <div className="w-20 h-20 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <AlertCircle size={40} />
+          </div>
+          <h2 className="text-2xl font-bold text-primary-navy dark:text-white mb-4">मोबाईल व्ह्यू उपलब्ध नाही</h2>
+          <p className="text-foreground/50 leading-relaxed mb-8">
+            ॲडमिन पॅनेल सुरक्षितता आणि उत्तम अनुभवासाठी कृपया डेस्कटॉप किंवा लॅपटॉपवरून लॉगिन करा.
+          </p>
+          <Link href="/">
+            <button className="w-full py-4 rounded-2xl bg-primary-navy text-white font-bold">
+              मुख्यपृष्ठावर जा
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#f8faff] dark:bg-[#0a0e1a] flex">
       {/* Sidebar */}

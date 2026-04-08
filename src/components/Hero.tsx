@@ -69,6 +69,9 @@ export const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="bg-primary-navy text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-xl shadow-primary-navy/20 hover:bg-accent-blue transition-colors group"
             >
               कार्यक्रम पहा
@@ -77,26 +80,29 @@ export const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="px-8 py-4 rounded-2xl font-bold border-2 border-primary-navy/10 hover:border-primary-navy transition-all flex items-center justify-center"
             >
               आमच्याबद्दल अधिक
             </motion.button>
           </div>
 
-          <div className="mt-12 flex gap-8 items-center border-t border-slate-100 dark:border-white/5 pt-8">
+          <div className="mt-12 inline-flex flex-wrap gap-8 items-center bg-white/50 dark:bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-sm">
             <div>
               <div className="text-2xl font-bold text-primary-navy dark:text-white">150+</div>
-              <div className="text-xs font-medium text-foreground/50 uppercase tracking-widest">सक्रिय सदस्य</div>
+              <div className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">सक्रिय सदस्य</div>
             </div>
             <div className="w-px h-8 bg-slate-200 dark:bg-white/10" />
             <div>
               <div className="text-2xl font-bold text-primary-navy dark:text-white">12</div>
-              <div className="text-xs font-medium text-foreground/50 uppercase tracking-widest">वार्षिक कार्यक्रम</div>
+              <div className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">वार्षिक कार्यक्रम</div>
             </div>
             <div className="w-px h-8 bg-slate-200 dark:bg-white/10" />
             <div>
-              <div className="text-2xl font-bold text-primary-navy dark:text-white">8+</div>
-              <div className="text-xs font-medium text-foreground/50 uppercase tracking-widest">वर्षांचा अनुभव</div>
+              <div className="text-2xl font-bold text-accent-blue">8+</div>
+              <div className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">वर्षांचा अनुभव</div>
             </div>
           </div>
         </motion.div>

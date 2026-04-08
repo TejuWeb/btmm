@@ -3,14 +3,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Maximize2, Image as ImageIcon } from "lucide-react";
+import Image from "next/image";
 
 const galleryItems = [
-  { title: "आंबेडकर जयंती", icon: "☸️", color: "bg-blue-600" },
-  { title: "रक्तदान शिबिर", icon: "🩸", color: "bg-red-500" },
-  { title: "शैक्षणिक मेळावा", icon: "📖", color: "bg-teal-500" },
-  { title: "सांस्कृतिक कार्यक्रम", icon: "🎭", color: "bg-amber-500" },
-  { title: "धम्म कार्यक्रम", icon: "🌸", color: "bg-purple-500" },
-  { title: "सामाजिक उपक्रम", icon: "🤝", color: "bg-emerald-600" },
+  { title: "आंबेडकर जयंती", image: "https://images.unsplash.com/photo-1590059345003-887413550884?q=80&w=2070&auto=format&fit=crop", color: "bg-blue-600" },
+  { title: "रक्तदान शिबिर", image: "https://images.unsplash.com/photo-1536856789559-1cb4942aae3c?q=80&w=2070&auto=format&fit=crop", color: "bg-red-500" },
+  { title: "शैक्षणिक मेळावा", image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop", color: "bg-teal-500" },
+  { title: "सांस्कृतिक कार्यक्रम", image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop", color: "bg-amber-500" },
+  { title: "धम्म कार्यक्रम", image: "https://images.unsplash.com/photo-1588652136009-847e3a985558?q=80&w=1974&auto=format&fit=crop", color: "bg-purple-500" },
+  { title: "सामाजिक उपक्रम", image: "https://images.unsplash.com/photo-1559027615-cd946440db7f?q=80&w=2074&auto=format&fit=crop", color: "bg-emerald-600" },
 ];
 
 export const GallerySection = () => {
@@ -54,13 +55,17 @@ export const GallerySection = () => {
             transition={{ delay: i * 0.05 }}
             className="group relative aspect-square rounded-[2.5rem] overflow-hidden cursor-pointer"
           >
-            {/* Background Gradient/Placeholder */}
-            <div className={`absolute inset-0 ${item.color} opacity-80 group-hover:scale-110 transition-transform duration-700`} />
-            
-            {/* Content Icon */}
-            <div className="absolute inset-0 flex items-center justify-center text-8xl opacity-20 group-hover:scale-125 transition-transform duration-700">
-               {item.icon}
+            {/* Background Image */}
+            <div className="absolute inset-0">
+               <Image 
+                 src={item.image} 
+                 alt={item.title}
+                 fill 
+                 className="object-cover group-hover:scale-110 transition-transform duration-700" 
+               />
             </div>
+            
+            <div className={`absolute inset-0 ${item.color} opacity-20 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-700`} />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-primary-navy/90 via-primary-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
