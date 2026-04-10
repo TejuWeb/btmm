@@ -9,13 +9,13 @@ const figures = [
   { 
     name: "तथागत गौतम बुद्ध", 
     title: "शांतीदूत", 
-    image: "/images/buddha.png",
+    image: "/images/mahapurush/gautambuddha.jpeg",
     color: "from-amber-400 to-orange-600"
   },
   { 
     name: "छत्रपती शिवाजी महाराज", 
     title: "रयत प्रतिपालक", 
-    image: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=2064",
+    image: "/images/mahapurush/shivajimaharaj.jpeg",
     color: "from-orange-500 to-red-700"
   },
   { 
@@ -27,43 +27,43 @@ const figures = [
   { 
     name: "राजर्षी शाहू महाराज", 
     title: "आरक्षण जनक", 
-    image: "/images/mahapurush/shahu.png",
+    image: "/images/mahapurush/shahumaharaj.jpeg",
     color: "from-blue-500 to-indigo-700"
   },
   { 
     name: "डॉ. बाबासाहेब आंबेडकर", 
-    title: "भारतीय राज्यघटनेचे शिल्पकार", 
+    title: "शिल्पकार", 
     image: "/images/ambedkar.png",
     color: "from-indigo-600 to-blue-800"
   },
   { 
     name: "राष्ट्रसंत गाडगे बाबा", 
     title: "स्वच्छतादूत", 
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2070",
+    image: "/images/mahapurush/gadgebaba.jpeg",
     color: "from-slate-400 to-slate-600"
   },
   { 
     name: "क्रांतिज्योति सावित्रीबाई फुले", 
-    title: "स्त्री शिक्षणाच्या जननी", 
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2074",
+    title: "ज्ञानज्योती", 
+    image: "/images/mahapurush/savitribaiphule.jpeg",
     color: "from-pink-500 to-purple-700"
   },
   { 
     name: "राजमाता जिजाऊ", 
     title: "स्वराज्य प्रेरणा", 
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2070",
+    image: "/images/mahapurush/jijau.jpeg",
     color: "from-amber-600 to-yellow-800"
   },
   { 
     name: "त्यागमूर्ती माता रमाई", 
-    title: "सावली", 
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070",
+    title: "माता", 
+    image: "/images/mahapurush/ramai.jpeg",
     color: "from-gray-500 to-gray-700"
   },
   { 
     name: "लोकशाहीर अण्णाभाऊ साठे", 
     title: "साहित्यरत्न", 
-    image: "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?q=80&w=1974",
+    image: "/images/mahapurush/annabhausathe.jpeg",
     color: "from-emerald-500 to-teal-700"
   },
 ];
@@ -105,7 +105,7 @@ export const FiguresSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden bg-slate-900 mt-20 group">
+    <div className="relative w-full h-[520px] md:h-[500px] overflow-hidden bg-slate-900 mt-[70px] md:mt-20 group">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentIndex}
@@ -137,7 +137,7 @@ export const FiguresSlider = () => {
                 src={figures[currentIndex].image}
                 alt={figures[currentIndex].name}
                 fill
-                className="object-cover"
+                className="object-cover md:object-center"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -149,7 +149,7 @@ export const FiguresSlider = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-gold font-bold text-xs md:text-sm tracking-[0.2em] uppercase mb-4"
+                className="inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-white/10 backdrop-blur-md text-gold font-bold text-[10px] md:text-sm tracking-[0.2em] uppercase mb-3 md:mb-4"
               >
                 {figures[currentIndex].title}
               </motion.span>
@@ -157,7 +157,7 @@ export const FiguresSlider = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-4xl md:text-6xl font-black mb-6 leading-tight font-heading drop-shadow-lg"
+                className="text-3xl md:text-6xl font-black mb-4 md:mb-6 leading-tight font-heading drop-shadow-xl"
               >
                 {figures[currentIndex].name}
               </motion.h2>
@@ -165,7 +165,7 @@ export const FiguresSlider = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="text-white/70 text-base md:text-lg leading-relaxed mb-8 max-w-lg mx-auto md:mx-0"
+                className="text-white/70 text-sm md:text-lg leading-relaxed mb-6 md:mb-8 max-w-lg mx-auto md:mx-0 px-4 md:px-0"
               >
                 त्यांच्या विचारांना सन्मान देऊन आपण एक आदर्श समाज घडवूया. प्रज्ञा, शील आणि करुणेचा संदेश घरोघरी पोहोचवूया.
               </motion.p>
@@ -177,19 +177,19 @@ export const FiguresSlider = () => {
       {/* Navigation Controls */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 hover:bg-white/10 backdrop-blur-md text-white flex items-center justify-center border border-white/10 transition-all opacity-0 group-hover:opacity-100 z-10"
+        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 md:bg-black/20 hover:bg-white/10 backdrop-blur-md text-white flex items-center justify-center border border-white/10 transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 z-10"
       >
         <ChevronLeft size={24} />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 hover:bg-white/10 backdrop-blur-md text-white flex items-center justify-center border border-white/10 transition-all opacity-0 group-hover:opacity-100 z-10"
+        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 md:bg-black/20 hover:bg-white/10 backdrop-blur-md text-white flex items-center justify-center border border-white/10 transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 z-10"
       >
         <ChevronRight size={24} />
       </button>
 
       {/* Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-10">
         {figures.map((_, i) => (
           <button
             key={i}

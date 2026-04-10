@@ -53,7 +53,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0e1a] py-20 px-6">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0e1a] py-10 md:py-20 px-6">
       <div className="max-w-2xl mx-auto">
         <Link href="/" className="inline-flex items-center gap-2 text-foreground/40 hover:text-accent-blue transition-colors mb-12 group">
           <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />

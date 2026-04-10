@@ -6,20 +6,10 @@ import { Play, Youtube } from "lucide-react";
 
 const videos = [
   {
-    title: "BTMM वार्षिक महोत्सव 2024 - विशेष झलक",
+    title: "संयुक्त जयंती महोत्सव 2025 - विशेष झलक",
     id: "dQw4w9WgXcQ", // Example placeholder
-    thumbnail: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    title: "समाज प्रबोधन - प्रमुख व्याख्यान",
-    id: "dQw4w9WgXcQ", // Example placeholder
-    thumbnail: "https://images.unsplash.com/photo-1540575861501-7ad0582371f3?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    title: "रक्तदान शिबिर - जनप्रतिसाद",
-    id: "dQw4w9WgXcQ", // Example placeholder
-    thumbnail: "https://images.unsplash.com/photo-1576091160550-217359f4ecf8?q=80&w=2070&auto=format&fit=crop",
-  },
+    thumbnail: "https://youtu.be/56B827-PyAs?si=lPatqHIBnVB6MK4L",
+  }
 ];
 
 export const VideoGallery = () => {
@@ -27,12 +17,12 @@ export const VideoGallery = () => {
     <section id="videos" className="section-padding bg-white dark:bg-slate-900">
       <div className="flex flex-col items-center text-center mb-16">
         <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           className="w-16 h-16 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center mb-6"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="w-16 h-16 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center mb-6"
         >
-           <Youtube size={32} />
+          <Youtube size={32} />
         </motion.div>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -64,8 +54,8 @@ export const VideoGallery = () => {
             className="group relative"
           >
             <div className="relative aspect-video rounded-[2rem] overflow-hidden shadow-xl shadow-slate-200 dark:shadow-none bg-slate-100 group-hover:scale-[1.02] transition-transform duration-500">
-              <img 
-                src={video.thumbnail} 
+              <img
+                src={video.thumbnail}
                 alt={video.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms]"
               />
@@ -74,8 +64,8 @@ export const VideoGallery = () => {
                   <Play fill="currentColor" size={24} className="ml-1" />
                 </div>
               </div>
-              <a 
-                href={`https://www.youtube.com/watch?v=${video.id}`}
+              <a
+                href={`https://youtu.be/56B827-PyAs?si=lPatqHIBnVB6MK4L${video.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute inset-0 z-10"

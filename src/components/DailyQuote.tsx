@@ -66,13 +66,13 @@ export const DailyQuote = () => {
   }, []);
 
   return (
-    <section className="py-20 px-6 bg-slate-50 dark:bg-white/[0.02]">
+    <section className="py-12 md:py-20 px-6 bg-slate-50 dark:bg-white/[0.02]">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative p-12 md:p-16 rounded-[3rem] bg-white dark:bg-white/5 border border-slate-100 dark:border-white/10 shadow-2xl shadow-slate-200/50 dark:shadow-none overflow-hidden text-center"
+          className="relative p-8 md:p-16 rounded-[2.5rem] md:rounded-[3rem] bg-white dark:bg-white/5 border border-slate-100 dark:border-white/10 shadow-2xl shadow-slate-200/50 dark:shadow-none overflow-hidden text-center"
         >
           {/* Decorative Elements */}
           <div className="absolute top-0 left-0 w-32 h-32 bg-accent-blue/10 rounded-br-[5rem] -translate-x-10 -translate-y-10" />
