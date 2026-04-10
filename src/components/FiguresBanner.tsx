@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react";
+import {useState} from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 const figures = [
   { name: "गौतम बुद्ध", title: "तथागत", image: "/images/buddha.png" },
-  { name: "शिवाजी महाराज", title: "छत्रपती", image: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=2064" },
-  { name: "जोतिबा फुले", title: "महात्मा", image: "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?q=80&w=2074" },
-  { name: "शाहू महाराज", title: "राजर्षी", image: "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?q=80&w=2070" },
+  { name: "शिवाजी महाराज", title: "छत्रपती", image: "https://images." },
+  { name: "जोतिबा फुले", title: "महात्मा", image: "https://images." },
+  { name: "शाहू महाराज", title: "राजर्षी", image: "https://images." },
   { name: "डॉ. आंबेडकर", title: "भारतरत्न", image: "/images/ambedkar.png" },
-  { name: "माता जिजाऊ", title: "राजमाता", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976" },
-  { name: "सावित्रीबाई फुले", title: "क्रांतिज्योति", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974" },
-  { name: "माता रमाई", title: "त्यागमूर्ती", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070" },
+  { name: "माता जिजाऊ", title: "राजमाता", image: "https://images." },
+  { name: "सावित्रीबाई फुले", title: "क्रांतिज्योति", image: "https://images." },
+  { name: "माता रमाई", title: "त्यागमूर्ती", image: "https://images." },
 ];
 
 export const FiguresBanner = () => {
