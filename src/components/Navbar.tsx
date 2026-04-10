@@ -48,40 +48,37 @@ export const Navbar = () => {
           </div>
           <div className="flex flex-col">
             <span className="font-heading font-bold text-lg leading-none text-primary-navy dark:text-white">
-              बौद्ध तरुण मित्र मंडळ
+              बौद्ध तरुण मित्र मंडळ, दहिवली
             </span>
             <span className="text-[10px] font-medium tracking-wider opacity-60 uppercase">
-              Bauddha Tarun Mitra Mandal
+              Bauddha Tarun Mitra Mandal, Dahivali
             </span>
           </div>
         </Link>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="px-4 py-2 text-sm font-medium hover:text-accent-blue transition-colors rounded-full hover:bg-accent-blue/5"
-            >
-              {link.name}
-            </a>
-          ))}
-          {/*<Link href="/admin">
-            <button className="ml-4 flex items-center gap-2 bg-gradient-to-r from-primary-navy to-accent-blue text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg hover:shadow-accent-blue/30 transition-all hover:-translate-y-0.5 active:translate-y-0">
-              <ShieldCheck size={16} />
-              Admin
-            </button>
-          </Link>*/}
-        </div>
+        {/* Actions */}
+        <div className="flex items-center gap-2">
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="px-4 py-2 text-sm font-medium hover:text-accent-blue transition-colors rounded-full hover:bg-accent-blue/5"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden p-2 text-foreground"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden p-2 text-foreground"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

@@ -7,16 +7,21 @@ import { GallerySection } from "@/components/GallerySection";
 import { VideoGallery } from "@/components/VideoGallery";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
-import { FiguresBanner } from "@/components/FiguresBanner";
+import { FiguresSlider } from "@/components/FiguresSlider";
+import { DailyQuote } from "@/components/DailyQuote";
+import { DonationSection } from "@/components/DonationSection";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
       <Navbar />
-      <FiguresBanner />
+      <FiguresSlider />
+      
       <div id="home">
         <Hero />
       </div>
+
+      <DailyQuote />
       
       <div className="flex-grow">
           <AboutSection />
@@ -25,6 +30,7 @@ export default function Home() {
           <GallerySection />
           <VideoGallery />
           <ContactSection />
+          <DonationSection />
       </div>
 
       <Footer />

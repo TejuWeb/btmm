@@ -3,13 +3,26 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { User, Phone, MapPin, CheckCircle, ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { dataStore } from "@/lib/data-store";
 
 export default function RegisterPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    await dataStore.saveRegistration({
+      name: formData.get("name") as string,
+      phone: formData.get("phone") as string,
+      address: formData.get("address") as string,
+    });
+
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
@@ -62,6 +75,7 @@ export default function RegisterPage() {
               <div className="relative">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30" size={20} />
                 <input 
+                  name="name"
                   required
                   type="text" 
                   placeholder="उदा. राहुल उत्तम कांबळे" 
@@ -75,6 +89,7 @@ export default function RegisterPage() {
               <div className="relative">
                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30" size={20} />
                 <input 
+                  name="phone"
                   required
                   type="tel" 
                   placeholder="उदा. 9876543210" 
@@ -88,6 +103,7 @@ export default function RegisterPage() {
               <div className="relative">
                 <MapPin className="absolute left-4 top-4 text-foreground/30" size={20} />
                 <textarea 
+                  name="address"
                   required
                   rows={4}
                   placeholder="तुमचा सविस्तर पत्ता लिहा..." 
@@ -99,9 +115,10 @@ export default function RegisterPage() {
             <div className="pt-4">
               <button 
                 type="submit"
-                className="w-full py-5 bg-primary-navy text-white font-bold rounded-2xl shadow-xl shadow-primary-navy/20 hover:bg-accent-blue transition-all active:scale-[0.98]"
+                disabled={isSubmitting}
+                className="w-full py-5 bg-primary-navy text-white font-bold rounded-2xl shadow-xl shadow-primary-navy/20 hover:bg-accent-blue transition-all active:scale-[0.98] disabled:opacity-50"
               >
-                अर्ज सादर करा
+                {isSubmitting ? "अर्ज सादर होत आहे..." : "अर्ज सादर करा"}
               </button>
             </div>
           </div>

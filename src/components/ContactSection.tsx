@@ -1,20 +1,30 @@
-"use client";
-
-import React from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
+import { dataStore } from "@/lib/data-store";
 
 export const ContactSection = () => {
   const [messages, setMessages] = React.useState<{name: string, subject: string, time: string}[]>([]);
   const [submitted, setSubmitted] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const form = e.target as HTMLFormElement;
-    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
-    const subject = (form.elements.namedItem('subject') as HTMLInputElement).value;
+    const formData = new FormData(form);
+    
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const subject = formData.get("subject") as string;
+    const message = formData.get("message") as string;
+
+    await dataStore.saveMessage({
+      name,
+      phone,
+      subject,
+      message,
+    });
     
     setMessages([{ name, subject, time: "आत्ताच" }, ...messages]);
+    setIsSubmitting(false);
     setSubmitted(true);
     form.reset();
     setTimeout(() => {
@@ -111,24 +121,28 @@ export const ContactSection = () => {
                      <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                            <label className="text-xs font-bold text-foreground/50 uppercase tracking-widest ml-1">नाव</label>
-                           <input required type="text" placeholder="पूर्ण नाव" className="w-full bg-slate-50 dark:bg-white/5 border-none rounded-2xl p-4 focus:ring-2 focus:ring-accent-blue/20 transition-all" />
+                           <input name="name" required type="text" placeholder="पूर्ण नाव" className="w-full bg-slate-50 dark:bg-white/5 border-none rounded-2xl p-4 focus:ring-2 focus:ring-accent-blue/20 transition-all" />
                         </div>
                         <div className="space-y-2">
                            <label className="text-xs font-bold text-foreground/50 uppercase tracking-widest ml-1">मोबाईल</label>
-                           <input required type="text" placeholder="+91 XXXXX XXXXX" className="w-full bg-slate-50 dark:bg-white/5 border-none rounded-2xl p-4 focus:ring-2 focus:ring-accent-blue/20 transition-all" />
+                           <input name="phone" required type="text" placeholder="+91 XXXXX XXXXX" className="w-full bg-slate-50 dark:bg-white/5 border-none rounded-2xl p-4 focus:ring-2 focus:ring-accent-blue/20 transition-all" />
                         </div>
                      </div>
                      <div className="space-y-2">
                         <label className="text-xs font-bold text-foreground/50 uppercase tracking-widest ml-1">विषय</label>
-                        <input required type="text" placeholder="संदेशाचा विषय" className="w-full bg-slate-50 dark:bg-white/5 border-none rounded-2xl p-4 focus:ring-2 focus:ring-accent-blue/20 transition-all" />
+                        <input name="subject" required type="text" placeholder="संदेशाचा विषय" className="w-full bg-slate-50 dark:bg-white/5 border-none rounded-2xl p-4 focus:ring-2 focus:ring-accent-blue/20 transition-all" />
                      </div>
                      <div className="space-y-2">
                         <label className="text-xs font-bold text-foreground/50 uppercase tracking-widest ml-1">संदेश</label>
-                        <textarea required rows={4} placeholder="तुमचा संदेश इथे लिहा..." className="w-full bg-slate-50 dark:bg-white/5 border-none rounded-2xl p-4 focus:ring-2 focus:ring-accent-blue/20 transition-all resize-none"></textarea>
+                        <textarea name="message" required rows={4} placeholder="तुमचा संदेश इथे लिहा..." className="w-full bg-slate-50 dark:bg-white/5 border-none rounded-2xl p-4 focus:ring-2 focus:ring-accent-blue/20 transition-all resize-none"></textarea>
                      </div>
-                     <button type="submit" className="w-full py-5 bg-gradient-to-r from-primary-navy to-accent-blue text-white font-bold rounded-2xl shadow-xl shadow-accent-blue/20 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all group">
-                        संदेश पाठवा
-                        <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                     <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full py-5 bg-gradient-to-r from-primary-navy to-accent-blue text-white font-bold rounded-2xl shadow-xl shadow-accent-blue/20 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all group disabled:opacity-50 pointer-events-auto"
+                     >
+                        {isSubmitting ? "संदेश पाठवला जात आहे..." : "संदेश पाठवा"}
+                        {!isSubmitting && <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
                      </button>
                   </form>
                 </>

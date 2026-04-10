@@ -1,26 +1,9 @@
-"use client";
-
-import React from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
-import { 
-  Users, 
-  IndianRupee, 
-  Calendar, 
-  AlertCircle, 
-  ArrowUpRight, 
-  ArrowDownRight,
-  Plus,
-  Search,
-  LayoutDashboard,
-  Settings,
-  Bell,
-  LogOut
-} from "lucide-react";
+import { dataStore, Registration, Message } from "@/lib/data-store";
 
 export default function AdminDashboard() {
   const [isMobile, setIsMobile] = React.useState(false);
+  const [registrations, setRegistrations] = React.useState<Registration[]>([]);
+  const [messages, setMessages] = React.useState<Message[]>([]);
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -28,6 +11,11 @@ export default function AdminDashboard() {
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);
+
+    // Fetch data
+    setRegistrations(dataStore.getRegistrations());
+    setMessages(dataStore.getMessages());
+
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
@@ -51,6 +39,13 @@ export default function AdminDashboard() {
       </div>
     );
   }
+
+  const stats = [
+    { label: "एकूण सदस्य", value: (152 + registrations.length).toString(), change: `+${registrations.length} नवीन`, icon: <Users />, color: "text-blue-600", bg: "bg-blue-50" },
+    { label: "जमा रक्कम", value: "₹48,500", change: "+₹3,200 वाढ", icon: <IndianRupee />, color: "text-green-600", bg: "bg-green-50" },
+    { label: "आगामी कार्यक्रम", value: "3", change: "पुढील 30 दिवसांत", icon: <Calendar />, color: "text-amber-600", bg: "bg-amber-50" },
+    { label: "नवीन संदेश", value: messages.filter(m => !m.isRead).length.toString(), change: "तपासणी आवश्यक", icon: <Bell />, color: "text-red-600", bg: "bg-red-50" },
+  ];
 
   return (
     <div className="min-h-screen bg-[#f8faff] dark:bg-[#0a0e1a] flex">
@@ -91,10 +86,12 @@ export default function AdminDashboard() {
           ))}
         </nav>
         <div className="p-6 border-t border-slate-100 dark:border-white/10">
-          <button className="flex items-center gap-3 text-red-500 font-bold text-sm hover:translate-x-1 transition-transform">
-            <LogOut size={18} />
-            लॉगआउट
-          </button>
+          <Link href="/">
+            <button className="flex items-center gap-3 text-red-500 font-bold text-sm hover:translate-x-1 transition-transform">
+              <LogOut size={18} />
+              लॉगआउट
+            </button>
+          </Link>
         </div>
       </aside>
 
@@ -112,19 +109,16 @@ export default function AdminDashboard() {
             </div>
             <button className="bg-white dark:bg-white/5 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-white/10 relative">
               <Bell size={20} className="text-foreground/60" />
-              <div className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-black" />
+              {messages.some(m => !m.isRead) && (
+                <div className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-black" />
+              )}
             </button>
           </div>
         </header>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {[
-            { label: "एकूण सदस्य", value: "152", change: "+8 या महिन्यात", icon: <Users />, color: "text-blue-600", bg: "bg-blue-50" },
-            { label: "जमा रक्कम", value: "₹48,500", change: "+₹3,200 वाढ", icon: <IndianRupee />, color: "text-green-600", bg: "bg-green-50" },
-            { label: "आगामी कार्यक्रम", value: "3", change: "पुढील 30 दिवसांत", icon: <Calendar />, color: "text-amber-600", bg: "bg-amber-50" },
-            { label: "वर्गणी थकीत", value: "18", change: "Action Required", icon: <AlertCircle />, color: "text-red-600", bg: "bg-red-50" },
-          ].map((stat, i) => (
+          {stats.map((stat, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -149,60 +143,85 @@ export default function AdminDashboard() {
         </div>
 
         {/* Panels */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Table Panel */}
+        <div className="grid lg:grid-cols-1 gap-8">
+          {/* Members Table Panel */}
           <div className="bg-white dark:bg-white/5 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-white/10">
              <div className="flex justify-between items-center mb-8">
-                <h3 className="text-xl font-bold dark:text-white">नवीन सदस्य</h3>
-                <button className="text-accent-blue text-sm font-bold">सर्व पहा →</button>
+                <h3 className="text-xl font-bold dark:text-white">नवीन सभासद नोंदणी (Live)</h3>
+                <Link href="/members-list" className="text-accent-blue text-sm font-bold underline">वेबसाइटवर पहा →</Link>
              </div>
-             <table className="w-full text-left">
-                <thead>
-                   <tr className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest border-b border-slate-50 dark:border-white/5">
-                      <th className="pb-4">नाव</th>
-                      <th className="pb-4">दिनांक</th>
-                      <th className="pb-4 text-right">स्थिती</th>
-                   </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-50 dark:divide-white/5">
-                   {[
-                      { name: "राहुल कांबळे", date: "25 मार्च", status: "सक्रिय", color: "text-green-500" },
-                      { name: "प्रिया गायकवाड", date: "22 मार्च", status: "सक्रिय", color: "text-green-500" },
-                      { name: "अमोल वाघमारे", date: "18 मार्च", status: "प्रलंबित", color: "text-amber-500" },
-                      { name: "सुनीता भोसले", date: "15 मार्च", status: "सक्रिय", color: "text-green-500" },
-                   ].map((row, i) => (
-                      <tr key={i} className="group">
-                         <td className="py-4 font-bold text-sm group-hover:text-accent-blue transition-colors">{row.name}</td>
-                         <td className="py-4 text-sm text-foreground/50">{row.date}</td>
-                         <td className={`py-4 text-right text-xs font-bold ${row.color}`}>{row.status}</td>
+             {registrations.length === 0 ? (
+               <div className="py-12 text-center text-foreground/30">अद्याप नवीन नोंदणी नाही.</div>
+             ) : (
+               <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                    <thead>
+                      <tr className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest border-b border-slate-50 dark:border-white/5">
+                          <th className="pb-4">नाव</th>
+                          <th className="pb-4">फोन</th>
+                          <th className="pb-4">पत्ता</th>
+                          <th className="pb-4">दिनांक</th>
+                          <th className="pb-4 text-right">स्थिती</th>
                       </tr>
-                   ))}
-                </tbody>
-             </table>
+                    </thead>
+                    <tbody className="divide-y divide-slate-50 dark:divide-white/5">
+                      {registrations.map((row, i) => (
+                          <tr key={i} className="group">
+                            <td className="py-4 font-bold text-sm group-hover:text-accent-blue transition-colors">
+                              {row.name}
+                            </td>
+                            <td className="py-4 text-sm text-foreground/50">{row.phone}</td>
+                            <td className="py-4 text-sm text-foreground/50 truncate max-w-[200px]">{row.address}</td>
+                            <td className="py-4 text-sm text-foreground/50">{row.date}</td>
+                            <td className={`py-4 text-right text-xs font-bold ${row.status === 'pending' ? 'text-amber-500' : 'text-green-500'}`}>
+                              {row.status === 'pending' ? 'प्रलंबित' : 'सक्षम'}
+                            </td>
+                          </tr>
+                      ))}
+                    </tbody>
+                </table>
+               </div>
+             )}
           </div>
 
-          {/* Quick Actions */}
-          <div className="bg-gradient-to-br from-primary-navy to-accent-blue rounded-[2.5rem] p-8 text-white shadow-xl shadow-accent-blue/20">
-             <h3 className="text-xl font-bold mb-8">त्वरित कृती</h3>
-             <div className="grid grid-cols-2 gap-4">
-                {[
-                   { icon: <Plus size={18} />, label: "नवीन सदस्य" },
-                   { icon: <Calendar size={18} />, label: "कार्यक्रम जोडा" },
-                   { icon: <IndianRupee size={18} />, label: "व्यवहार नोंदवा" },
-                   { icon: <Bell size={18} />, label: "सूचना पाठवा" },
-                ].map((action, i) => (
-                   <button key={i} className="bg-white/10 backdrop-blur-md hover:bg-white/20 p-5 rounded-2xl flex flex-col items-center gap-3 transition-all group">
-                      <div className="p-3 bg-white/10 rounded-xl group-hover:scale-110 transition-transform">{action.icon}</div>
-                      <span className="text-xs font-bold uppercase tracking-wider">{action.label}</span>
-                   </button>
-                ))}
+          {/* Messages Panel */}
+          <div className="bg-white dark:bg-white/5 rounded-[2.5rem] p-8 shadow-sm border border-slate-100 dark:border-white/10">
+             <div className="flex justify-between items-center mb-8">
+                <h3 className="text-xl font-bold dark:text-white">संपर्क संदेश (Live)</h3>
              </div>
-             <div className="mt-8 p-6 bg-white/5 rounded-2xl border border-white/10">
-                <div className="text-sm font-bold mb-2">सिस्टम अपडेट</div>
-                <div className="text-xs text-white/50 leading-relaxed">
-                   BTMM पोर्टल व्हर्जन ४.० आता उपलब्ध आहे. नवीन गॅलरी व्यवस्थापन फीचर वापरून पहा.
-                </div>
-             </div>
+             {messages.length === 0 ? (
+               <div className="py-12 text-center text-foreground/30">अद्याप कोणतेही संदेश नाहीत.</div>
+             ) : (
+               <div className="grid gap-4">
+                  {messages.map((msg, i) => (
+                    <div 
+                      key={i} 
+                      className={`p-6 rounded-2xl border ${msg.isRead ? 'border-slate-100 dark:border-white/5' : 'border-accent-blue/30 bg-accent-blue/5'} transition-all`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="font-bold text-primary-navy dark:text-white">{msg.name}</div>
+                        <div className="text-[10px] text-foreground/40 font-bold uppercase">{msg.date}</div>
+                      </div>
+                      <div className="text-xs font-bold text-accent-blue mb-2">{msg.subject}</div>
+                      <p className="text-sm text-foreground/70 dark:text-slate-300 leading-relaxed mb-4">{msg.message}</p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-foreground/40 italic">फोन: {msg.phone}</span>
+                        {!msg.isRead && (
+                          <button 
+                            onClick={() => {
+                              dataStore.markMessageAsRead(msg.id);
+                              setMessages(dataStore.getMessages());
+                            }}
+                            className="text-[10px] font-bold text-accent-blue bg-white dark:bg-white/10 px-3 py-1.5 rounded-lg uppercase tracking-wider hover:bg-accent-blue hover:text-white transition-all"
+                          >
+                            वाचले म्हणून खूण करा
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+               </div>
+             )}
           </div>
         </div>
       </main>

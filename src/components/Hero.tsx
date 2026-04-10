@@ -61,7 +61,7 @@ export const Hero = () => {
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-foreground/70 max-w-xl mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-foreground/70 dark:text-slate-300 max-w-xl mb-10 leading-relaxed">
             डॉ. बाबासाहेब आंबेडकर आणि तथागत गौतम बुद्ध यांच्या विचारांनी प्रेरित होऊन गावाच्या सर्वांगीण विकासासाठी अथकपणे कार्यरत संघटन.
           </p>
 
@@ -83,7 +83,7 @@ export const Hero = () => {
               onClick={() => {
                 document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-4 rounded-2xl font-bold border-2 border-primary-navy/10 hover:border-primary-navy transition-all flex items-center justify-center"
+              className="px-8 py-4 rounded-2xl font-bold border-2 border-primary-navy/10 dark:border-white/20 hover:border-primary-navy dark:hover:border-white transition-all flex items-center justify-center text-primary-navy dark:text-white"
             >
               आमच्याबद्दल अधिक
             </motion.button>
@@ -92,17 +92,17 @@ export const Hero = () => {
           <div className="mt-12 inline-flex flex-wrap gap-8 items-center bg-white/50 dark:bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-sm">
             <div>
               <div className="text-2xl font-bold text-primary-navy dark:text-white">150+</div>
-              <div className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">सक्रिय सदस्य</div>
+              <div className="text-[10px] font-bold text-foreground/40 dark:text-slate-400 uppercase tracking-widest">सक्रिय सदस्य</div>
             </div>
             <div className="w-px h-8 bg-slate-200 dark:bg-white/10" />
             <div>
               <div className="text-2xl font-bold text-primary-navy dark:text-white">12</div>
-              <div className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">वार्षिक कार्यक्रम</div>
+              <div className="text-[10px] font-bold text-foreground/40 dark:text-slate-400 uppercase tracking-widest">वार्षिक कार्यक्रम</div>
             </div>
             <div className="w-px h-8 bg-slate-200 dark:bg-white/10" />
             <div>
               <div className="text-2xl font-bold text-accent-blue">8+</div>
-              <div className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest">वर्षांचा अनुभव</div>
+              <div className="text-[10px] font-bold text-foreground/40 dark:text-slate-400 uppercase tracking-widest">वर्षांचा अनुभव</div>
             </div>
           </div>
         </motion.div>

@@ -38,20 +38,23 @@ export const FiguresBanner = () => {
               key={i}
               className="flex flex-col items-center flex-shrink-0 group"
             >
-              <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-gold/20 group-hover:border-gold transition-all shadow-md mb-2">
+              <div className="relative w-20 h-24 md:w-24 md:h-32 rounded-2xl overflow-hidden border border-white/10 dark:border-white/5 shadow-lg group-hover:shadow-gold/20 transition-all duration-500 mb-3 bg-slate-50 dark:bg-slate-800/50 backdrop-blur-sm">
                 <Image
                   src={figure.image}
                   alt={figure.name}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
-              <span className="text-[9px] font-bold text-gold uppercase tracking-tighter">
-                {figure.title}
-              </span>
-              <span className="text-xs font-bold text-primary-navy dark:text-white text-center">
-                {figure.name}
-              </span>
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] font-bold text-gold uppercase tracking-widest mb-0.5">
+                  {figure.title}
+                </span>
+                <span className="text-sm font-bold text-primary-navy dark:text-white group-hover:text-accent-blue transition-colors text-center">
+                  {figure.name}
+                </span>
+              </div>
             </div>
           ))}
         </motion.div>

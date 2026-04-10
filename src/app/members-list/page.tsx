@@ -1,11 +1,6 @@
-"use client";
+import { dataStore, Registration } from "@/lib/data-store";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowLeft, Search, UserCheck } from "lucide-react";
-import Link from "next/link";
-
-const registeredMembers = [
+const hardcodedMembers = [
   { name: "राहुल कांबळे", village: "मुख्य गाव", date: "25 मार्च 2025" },
   { name: "प्रिया गायकवाड", village: "शिवाजी नगर", date: "22 मार्च 2025" },
   { name: "अमोल वाघमारे", village: "आंबेडकर चौक", date: "18 मार्च 2025" },
@@ -15,6 +10,21 @@ const registeredMembers = [
 ];
 
 export default function MembersListPage() {
+  const [dynamicMembers, setDynamicMembers] = React.useState<Registration[]>([]);
+
+  React.useEffect(() => {
+    setDynamicMembers(dataStore.getRegistrations());
+  }, []);
+
+  const allMembers = [
+    ...dynamicMembers.map(m => ({ 
+      name: m.name, 
+      village: m.address.length > 20 ? m.address.substring(0, 20) + "..." : m.address, 
+      date: m.date,
+      isPending: m.status === 'pending'
+    })),
+    ...hardcodedMembers
+  ];
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0a0e1a] py-20 px-6">
       <div className="max-w-4xl mx-auto">
@@ -44,7 +54,7 @@ export default function MembersListPage() {
             <div>गाव / विभाग</div>
             <div className="text-right">नोंदणी दिनांक</div>
           </div>
-          {registeredMembers.map((member, i) => (
+          {allMembers.map((member, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 10 }}
@@ -59,9 +69,9 @@ export default function MembersListPage() {
                 <div>
                   <h3 className="font-bold text-lg text-primary-navy dark:text-white group-hover:text-accent-blue transition-colors flex items-center gap-2">
                     {member.name}
-                    <div className="flex items-center gap-1 text-[8px] font-bold text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full uppercase tracking-tighter">
+                    <div className={`flex items-center gap-1 text-[8px] font-bold ${('isPending' in member && member.isPending) ? 'text-amber-500 bg-amber-500/10' : 'text-green-500 bg-green-500/10'} px-2 py-0.5 rounded-full uppercase tracking-tighter`}>
                       <UserCheck size={10} />
-                      अधिकृत
+                      {('isPending' in member && member.isPending) ? 'प्रलंबित' : 'अधिकृत'}
                     </div>
                   </h3>
                   <p className="text-foreground/30 text-xs md:hidden">{member.village}</p>

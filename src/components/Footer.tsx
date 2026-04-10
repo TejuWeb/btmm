@@ -1,8 +1,27 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, Eye } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export const Footer = () => {
+  const [visitorCount, setVisitorCount] = useState(12842); // Base starting count
+
+  useEffect(() => {
+    // Increment global visitor count
+    const fetchCount = async () => {
+      try {
+        const response = await fetch("https://api.counterapi.dev/v1/btmm-portal/visits/up");
+        const data = await response.json();
+        if (data.count) {
+          setVisitorCount(data.count + 24800); // Adding base to reflect existing traffic
+        }
+      } catch (error) {
+        console.error("Counter failed:", error);
+      }
+    };
+    fetchCount();
+  }, []);
   return (
     <footer className="bg-primary-navy text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-16">
@@ -62,7 +81,7 @@ export const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div>
+        <div className="space-y-6">
           <h4 className="font-heading font-bold text-lg mb-6">संपर्क साधा</h4>
           <ul className="space-y-4 text-sm text-white/50">
             <li className="flex gap-3">
@@ -78,6 +97,21 @@ export const Footer = () => {
               <span>btmm@email.com</span>
             </li>
           </ul>
+
+          {/* Visitor Counter */}
+          <div className="pt-6 border-t border-white/5">
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 rounded-xl border border-white/10 shadow-inner">
+              <div className="p-1.5 bg-gold/20 rounded-lg">
+                <Eye size={16} className="text-gold" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] text-white/40 uppercase tracking-tight">Website Visits</span>
+                <span className="text-base font-bold font-heading text-white tabular-nums">
+                  {visitorCount.toLocaleString()}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -85,9 +119,12 @@ export const Footer = () => {
         <p className="text-white/40 text-[13px]">
           © 2026 बौद्ध तरुण मित्र मंडळ | सर्व हक्क राखीव.
         </p>
-        <div className="flex gap-6 text-[13px] text-white/40">
-          <p>नमो बुद्धाय ☸️</p>
-          <p>जय भीम 🙏</p>
+        <div className="flex flex-col md:flex-row gap-6 text-[13px] text-white/40 items-center">
+          <p>नमो बुद्धाय ☸️ | जय भीम 🙏</p>
+          <div className="h-4 w-px bg-white/10 hidden md:block" />
+          <p className="flex items-center gap-1.5">
+            Developed by <span className="text-white/70 font-bold hover:text-gold transition-colors cursor-pointer">Tejas Gaikwad</span>
+          </p>
         </div>
       </div>
     </footer>

@@ -67,11 +67,11 @@ export const EventsSection = () => {
                </h3>
                <div className="grid grid-cols-2 gap-8 mb-8">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-foreground/60">
+                    <div className="flex items-center gap-3 text-foreground/60 dark:text-slate-300">
                       <Calendar size={20} className="text-accent-blue" />
                       <span className="font-bold">{selectedEvent.date}</span>
                     </div>
-                    <div className="flex items-center gap-3 text-foreground/60">
+                    <div className="flex items-center gap-3 text-foreground/60 dark:text-slate-300">
                       <MapPin size={20} className="text-accent-blue" />
                       <span className="font-bold">{selectedEvent.location}</span>
                     </div>
@@ -80,7 +80,7 @@ export const EventsSection = () => {
                      <p className="text-xs text-foreground/40 font-bold uppercase">येथे कार्यक्रमाचा फोटो असेल</p>
                   </div>
                </div>
-               <p className="text-foreground/60 leading-relaxed mb-8">
+               <p className="text-foreground/60 dark:text-slate-400 leading-relaxed mb-8">
                  आमच्या या कार्यक्रमात सहभागी होऊन सहकार्य करावे ही नम्र विनंती. कार्यक्रमाची सविस्तर रूपरेषा लवकरच जाहीर केली जाईल.
                </p>
                <button 
@@ -117,7 +117,7 @@ export const EventsSection = () => {
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
            transition={{ delay: 0.2 }}
-           className="text-foreground/60 max-w-2xl mx-auto text-lg"
+           className="text-foreground/60 dark:text-slate-400 max-w-2xl mx-auto text-lg"
         >
           मंडळाच्या वतीने राबवले जाणारे सामाजिक, शैक्षणिक आणि सांस्कृतिक उपक्रम.
         </motion.p>
@@ -154,11 +154,11 @@ export const EventsSection = () => {
               </h3>
 
               <div className="space-y-3 mb-8">
-                <div className="flex items-center gap-2 text-foreground/60 text-sm">
+                <div className="flex items-center gap-2 text-foreground/60 dark:text-slate-400 text-sm">
                   <Calendar size={16} className="text-accent-blue" />
                   {event.date}
                 </div>
-                <div className="flex items-center gap-2 text-foreground/60 text-sm">
+                <div className="flex items-center gap-2 text-foreground/60 dark:text-slate-400 text-sm">
                   <MapPin size={16} className="text-accent-blue" />
                   {event.location}
                 </div>

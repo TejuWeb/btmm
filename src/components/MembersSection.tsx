@@ -62,7 +62,7 @@ export const MembersSection = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-extrabold text-primary-navy dark:text-white"
           >
-            आमचे <span className="text-accent-blue">मार्गदर्शक व कार्यकर्ते</span>
+            मंडळाचे <span className="text-accent-blue"> कार्यकर्ते</span>
           </motion.h2>
         </div>
         <motion.p
@@ -70,7 +70,7 @@ export const MembersSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-foreground/60 text-lg hidden md:block"
+          className="text-foreground/60 dark:text-slate-400 text-lg hidden md:block"
         >
           मंडळाचे नियोजन आणि व्यवस्थापन पाहणारी महत्त्वाची पदे.
         </motion.p>
@@ -114,7 +114,7 @@ export const MembersSection = () => {
               <h4 className="font-bold text-lg text-primary-navy dark:text-white mb-1 group-hover:text-accent-blue transition-colors">
                 {member.name}
               </h4>
-              <div className="text-[10px] font-bold text-foreground/40 uppercase tracking-widest mb-4">
+              <div className="text-[10px] font-bold text-foreground/40 dark:text-slate-500 uppercase tracking-widest mb-4">
                 {member.role}
               </div>
               <div className="flex justify-center gap-2">
