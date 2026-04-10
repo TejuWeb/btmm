@@ -1,3 +1,21 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { 
+  Users, 
+  IndianRupee, 
+  Calendar, 
+  AlertCircle, 
+  ArrowUpRight, 
+  Search,
+  LayoutDashboard,
+  Settings,
+  Bell,
+  LogOut
+} from "lucide-react";
 import { dataStore, Registration, Message } from "@/lib/data-store";
 
 export default function AdminDashboard() {

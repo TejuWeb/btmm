@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { User, Phone, MapPin, CheckCircle, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { dataStore } from "@/lib/data-store";
 
 export default function RegisterPage() {

@@ -1,3 +1,9 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Search, UserCheck } from "lucide-react";
+import Link from "next/link";
 import { dataStore, Registration } from "@/lib/data-store";
 
 const hardcodedMembers = [
